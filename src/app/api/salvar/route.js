@@ -2,14 +2,12 @@ import { Pool } from "pg";
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }, // Necessário para o Neon
+  ssl: { rejectUnauthorized: false },
 });
 
 export async function POST(req) {
   try {
-    console.log("entrou na rota :D")
-    
-    const body = await req.json(); // Pega os dados do formulário
+    const body = await req.json();
     const { nome, telefone, email, dataNascimento, localizacao, pedidoOracao } = body;
 
     const query = `

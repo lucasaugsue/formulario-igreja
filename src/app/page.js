@@ -1,7 +1,10 @@
 "use client";
+
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     nome: "",
     telefone: "",
@@ -15,7 +18,6 @@ export default function Home() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Envia os dados para a API
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,29 +27,27 @@ export default function Home() {
       body: JSON.stringify(formData),
     });
 
-    console.log("res", response)
-
     if (response.ok) {
-      alert("Dados enviados com sucesso!");
-      setFormData({
-        nome: "",
-        telefone: "",
-        email: "",
-        dataNascimento: "",
-        localizacao: "",
-        pedidoOracao: "",
-      });
+      router.push("/sucesso");
     } else {
       alert("Erro ao salvar os dados.");
     }
   };
 
   return (
-    <div>
-      <main className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
-        <h1 className="text-2xl font-bold text-center text-gray-800">
-          Bem-vindo à nossa igreja!
-        </h1>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-500 to-blue-900">
+      <main className="max-w-md w-full p-6 bg-white shadow-lg rounded-lg">
+        {/* Ícone da igreja */}
+        <div className="flex flex-col items-center">
+          <div className="w-16 h-16 bg-gradient-to-b from-blue-500 to-blue-800 rounded-full flex items-center justify-center shadow-lg">
+            <img src="/church.svg" alt="Igreja" className="w-8 h-8" />
+          </div>
+
+          <h1 className="text-2xl font-bold text-center text-gray-800 mt-4">
+            Bem-vindo à nossa igreja!
+          </h1>
+        </div>
+
         <p className="text-center text-gray-600 mb-4">
           Preencha o formulário para que possamos conhecer você melhor.
         </p>
@@ -59,7 +59,7 @@ export default function Home() {
               type="text"
               name="nome"
               value={formData.nome}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
               required
               className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 text-black"
             />
