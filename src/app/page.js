@@ -35,8 +35,8 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-500 to-blue-900">
-      <main className="max-w-md w-full p-6 bg-white shadow-lg rounded-lg">
+    <div className="h-screen flex flex-col justify-center items-center bg-gradient-to-b from-blue-500 to-blue-900 p-4">
+      <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-6">
         {/* Ícone da igreja */}
         <div className="flex flex-col items-center">
           <div className="w-16 h-16 bg-gradient-to-b from-blue-500 to-blue-800 rounded-full flex items-center justify-center shadow-lg">
@@ -132,7 +132,7 @@ export default function Home() {
             Enviar
           </button>
         </form>
-      </main>
+      </div>
     </div>
   );
 }
