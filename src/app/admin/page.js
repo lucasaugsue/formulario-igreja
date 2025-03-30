@@ -1,7 +1,10 @@
 "use client";
+
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Admin() {
+  const router = useRouter();
   const [senha, setSenha] = useState("");
   const [acessoPermitido, setAcessoPermitido] = useState(false);
   const [dados, setDados] = useState([]);
@@ -29,19 +32,29 @@ export default function Admin() {
 
   if (!acessoPermitido) {
     return (
-      <div className="h-screen flex flex-col items-center justify-center bg-gray-100">
-        <div className="bg-white p-6 rounded-lg shadow-md text-center">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Área Restrita</h2>
-          <p className="text-gray-600">Digite a senha para acessar:</p>
+      <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-500 to-blue-900 px-4">
+        <button 
+          onClick={() => router.push("/")} 
+          className="absolute top-6 left-6 text-white flex items-center gap-2 hover:opacity-80 transition"
+        >
+          <img src="/arrow-left.svg" alt="Voltar" className="w-5 h-5 filter invert" />
+          <span className="text-lg font-medium">Voltar</span>
+        </button>
+
+        <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-sm w-full">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-3">Área Restrita</h2>
+          <p className="text-gray-600 mb-4">Digite a senha para acessar:</p>
+
           <input
             type="password"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
-            className="mt-3 p-2 border border-gray-300 rounded-md text-black"
+            className="w-full p-2 border border-gray-300 rounded-md text-black focus:ring-2 focus:ring-blue-500 outline-none"
           />
+
           <button
             onClick={verificarSenha}
-            className="mt-4 bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition"
+            className="mt-4 w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition"
           >
             Entrar
           </button>
@@ -51,30 +64,35 @@ export default function Admin() {
   }
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold text-gray-800 text-center">Painel do Admin</h1>
-      <table className="mt-6 w-full bg-white shadow-md rounded-lg">
-        <thead>
-          <tr className="bg-blue-600 text-white">
-            <th className="p-3">Nome</th>
-            <th className="p-3">Telefone</th>
-            <th className="p-3">Email</th>
-            <th className="p-3">Data de Nascimento</th>
-            <th className="p-3">Localização</th>
-          </tr>
-        </thead>
-        <tbody>
-          {dados.map((pessoa, index) => (
-            <tr key={index} className="border-t text-center text-black">
-              <td className="p-3">{pessoa.nome}</td>
-              <td className="p-3">{pessoa.telefone}</td>
-              <td className="p-3">{pessoa.email}</td>
-              <td className="p-3">{pessoa.data_nascimento}</td>
-              <td className="p-3">{pessoa.localizacao}</td>
+    <div className="p-6 bg-gradient-to-b from-blue-500 to-blue-900 min-h-screen">
+      <h1 className="text-3xl font-bold text-white text-center mb-4">Painel do Admin</h1>
+      
+      <div className="overflow-x-auto bg-white shadow-md rounded-lg">
+        <table className="w-full min-w-max">
+          <thead>
+            <tr className="bg-blue-600 text-white">
+              <th className="p-3 text-left">Nome</th>
+              <th className="p-3 text-left">Telefone</th>
+              <th className="p-3 text-left">Email</th>
+              <th className="p-3 text-left">Data de Nascimento</th>
+              <th className="p-3 text-left">Localização</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {dados.map((pessoa, index) => (
+              <tr key={index} className="border-t text-gray-700 hover:bg-gray-100 transition">
+                <td className="p-3">{pessoa.nome}</td>
+                <td className="p-3">{pessoa.telefone}</td>
+                <td className="p-3">{pessoa.email}</td>
+                <td className="p-3">
+                  {new Date(pessoa.data_nascimento).toLocaleDateString("pt-BR")}
+                </td>
+                <td className="p-3">{pessoa.localizacao}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
