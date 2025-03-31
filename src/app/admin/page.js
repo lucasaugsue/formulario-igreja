@@ -64,9 +64,17 @@ export default function Admin() {
   }
 
   return (
-    <div className="p-6 bg-gradient-to-b from-blue-500 to-blue-900 min-h-screen">
-      <h1 className="text-3xl font-bold text-white text-center mb-4">Painel do Admin</h1>
-      
+    <div className="p-6 bg-gradient-to-b from-blue-500 to-blue-900 min-h-screen relative">
+      <button 
+        onClick={() => router.push("/")} 
+        className="absolute top-6 left-6 text-white flex items-center gap-2 hover:opacity-80 transition"
+      >
+        <img src="/arrow-left.svg" alt="Voltar" className="w-5 h-5 filter invert" />
+        <span className="text-lg font-medium">Voltar</span>
+      </button>
+
+      <h1 className="text-3xl font-bold text-white text-center mb-6 mt-12">Painel do Admin</h1>
+
       <div className="overflow-x-auto bg-white shadow-md rounded-lg">
         <table className="w-full min-w-max">
           <thead>

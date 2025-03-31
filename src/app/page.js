@@ -20,19 +20,27 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const response = await fetch("/api/salvar", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-
-    if (response.ok) {
-      router.push("/sucesso");
-    } else {
-      alert("Erro ao salvar os dados.");
+  
+    try {
+      const response = await fetch("/api/salvar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+  
+      const data = await response.json(); // Captura a resposta da API
+  
+      if (response.ok) {
+        router.push("/sucesso");
+      } else {
+        alert(data.message || "Erro ao salvar os dados."); // Exibe a mensagem retornada pela API
+      }
+    } catch (error) {
+      console.error("Erro ao enviar formulário:", error);
+      alert("Erro inesperado. Tente novamente.");
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-500 to-blue-900 flex flex-col items-center justify-center px-4 py-6">
@@ -50,14 +58,16 @@ export default function Home() {
         </p>
       </div>
   
-      <form className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <label className="flex flex-col">
           <span className="text-gray-700">Nome:</span>
           <input
-            type="text"
-            name="nome"
-            required
-            className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+             type="text"
+             name="nome"
+             value={formData.nome}
+             onChange={handleChange}
+             required
+            className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 text-black"
           />
         </label>
   
@@ -66,8 +76,10 @@ export default function Home() {
           <input
             type="tel"
             name="telefone"
+            value={formData.telefone}
+            onChange={handleChange}
             required
-            className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+            className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 text-black"
           />
         </label>
   
@@ -76,8 +88,10 @@ export default function Home() {
           <input
             type="email"
             name="email"
+            value={formData.email}
+            onChange={handleChange}
             required
-            className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+            className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 text-black"
           />
         </label>
   
@@ -86,8 +100,10 @@ export default function Home() {
           <input
             type="date"
             name="dataNascimento"
+            value={formData.dataNascimento}
+            onChange={handleChange}
             required
-            className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+            className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 text-black"
           />
         </label>
   
@@ -96,8 +112,10 @@ export default function Home() {
           <input
             type="text"
             name="localizacao"
+            value={formData.localizacao}
+            onChange={handleChange}
             required
-            className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+            className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 text-black"
           />
         </label>
   
@@ -106,8 +124,10 @@ export default function Home() {
           <textarea
             name="pedidoOracao"
             rows="4"
+            value={formData.pedidoOracao}
+            onChange={handleChange}
             required
-            className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 resize-none"
+            className="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 text-black resize-none"
           ></textarea>
         </label>
   
