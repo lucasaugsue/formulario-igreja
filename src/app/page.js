@@ -111,7 +111,7 @@ export default function Home() {
           </label>
 
           <label className="flex flex-col">
-            <span className="text-gray-700">Localização:</span>
+            <span className="text-gray-700">Endereço:</span>
             <input
               type="text"
               name="localizacao"

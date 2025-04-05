@@ -83,7 +83,7 @@ export default function Admin() {
               <th className="p-3 text-left">Telefone</th>
               <th className="p-3 text-left">Email</th>
               <th className="p-3 text-left">Data de Nascimento</th>
-              <th className="p-3 text-left">Localização</th>
+              <th className="p-3 text-left">Endereço</th>
             </tr>
           </thead>
           <tbody>
