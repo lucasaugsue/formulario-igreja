@@ -153,34 +153,36 @@ export default function Home() {
         </form>
       </main>
 
-      <footer className="w-full text-white py-4 mt-8 flex justify-center border border-white bg-gradient-to-b from-blue-500 to-blue-900 rounded-lg">
-        <div className="flex gap-12">
-          <a
-            href="https://www.facebook.com/igrejacem/?locale=pt_BR"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center"
-          >
-            <img src="/facebook.svg" alt="Facebook" className="w-6 h-6 filter invert" />
-            <span className="text-xs mt-1">Facebook</span>
-          </a>
+      <div className="max-w-md w-full">
+        <footer className="text-white py-4 mt-8 flex justify-center border border-white bg-gradient-to-b from-blue-500 to-blue-900 rounded-lg">
+          <div className="flex gap-12">
+            <a
+              href="https://www.facebook.com/igrejacem/?locale=pt_BR"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center"
+            >
+              <img src="/facebook.svg" alt="Facebook" className="w-6 h-6 filter invert" />
+              <span className="text-xs mt-1">Facebook</span>
+            </a>
 
-          <a
-            href="https://www.instagram.com/cem.miami/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center"
-          >
-            <img src="/instagram.svg" alt="Instagram" className="w-6 h-6 filter invert" />
-            <span className="text-xs mt-1">Instagram</span>
-          </a>
+            <a
+              href="https://www.instagram.com/cem.miami/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center"
+            >
+              <img src="/instagram.svg" alt="Instagram" className="w-6 h-6 filter invert" />
+              <span className="text-xs mt-1">Instagram</span>
+            </a>
 
-          <a href="/admin" className="flex flex-col items-center">
-            <img src="/user.svg" alt="Admin" className="w-6 h-6 filter invert" />
-            <span className="text-xs mt-1">Admin</span>
-          </a>
-        </div>
-      </footer>
+            <a href="/admin" className="flex flex-col items-center">
+              <img src="/user.svg" alt="Admin" className="w-6 h-6 filter invert" />
+              <span className="text-xs mt-1">Admin</span>
+            </a>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }
